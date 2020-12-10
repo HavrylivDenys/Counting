@@ -5,11 +5,15 @@ from re import match, compile
 def counting_holes(v: Union[str, int]) -> int:
     """ 
     Counting holes functions excepts string or integer value and returns the number of 'holes' in numbers.
-    If it is not a string with number or not an integer value function returns string 'Error'
-    counting_holes('08824') => 5
-    counting_holes(88) => 4
-    counting_holes(99.3) => 'Error'
-    counting_holes('abc') => 'Error' 
+
+    Parameters
+    ----------
+    v : str, int
+        The string or number for counting
+    Returns
+    -------
+    int
+        A number of holes in numbers of string.
     """
 
     value: str = str(v)
@@ -23,12 +27,16 @@ def counting_holes(v: Union[str, int]) -> int:
 
 def check(v: str) -> bool:
     """ 
-    Check function validates the data. It returns True if variable is string with integers or integer.
-    It returns False in any other way.
-    check('08824') => True
-    check('88') => True
-    check('99.3') => False
-    check('abc') => False 
+    Check function validates the data. It returns True if variable is string with integers or when variable is an integer number.
+
+    Parameters
+    ----------
+    v : str
+        The string for check. Validate the condition. Condition -> integer numbers. 
+    Returns
+    -------
+    bool
+        True or False
     """
 
     pattern: Pattern = compile(r'^\d+$')
@@ -42,13 +50,19 @@ def check(v: str) -> bool:
 
 def count(v: str) -> int:
     """ 
-    Count function counts the holes in string. It returns the sum of holes in numbers.
-    count('08824') => 5
-    count('88') => 4
-    count('11') => 0
-    count('00021') => 0 
+    Count function counts the holes in string.
+
+    Parameters
+    ----------
+    v : str
+        The string for holes calculation.
+    Returns
+    -------
+    int
+        The number of holes
     """
 
+    # Striping leading zeros
     value: str = v.lstrip("0")
     result: int = 0
 
@@ -69,15 +83,3 @@ def count(v: str) -> int:
         result = result + numbers[ch]
 
     return result
-
-
-def test() -> None:
-    print(counting_holes("08842"))
-    print(counting_holes([]))
-    print(counting_holes(88))
-    print(counting_holes("00021"))
-    print(counting_holes(11))
-    print(counting_holes(20.4))
-
-
-test()
