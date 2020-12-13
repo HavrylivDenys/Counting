@@ -3,8 +3,9 @@ from re import match, compile
 
 
 def counting_holes(v: Union[str, int]) -> int:
-    """ 
-    Counting holes functions excepts string or integer value and returns the number of 'holes' in numbers.
+    """
+    Counting holes functions excepts string or integer value
+    and returns the number of 'holes' in numbers.
 
     Parameters
     ----------
@@ -16,40 +17,19 @@ def counting_holes(v: Union[str, int]) -> int:
         A number of holes in numbers of string.
     """
 
-    value: str = str(v)
-    is_str_or_int: bool = check(value)
-
-    if is_str_or_int:
-        return count(value)
+    if isinstance(v, (int, str)):
+        try:
+            value = str(abs(int(v)))
+        except ValueError:
+            return 'Error'
     else:
-        return "Error"
+        return 'Error'
 
-
-def check(v: str) -> bool:
-    """ 
-    Check function validates the data. It returns True if variable is string with integers or when variable is an integer number.
-
-    Parameters
-    ----------
-    v : str
-        The string for check. Validate the condition. Condition -> integer numbers. 
-    Returns
-    -------
-    bool
-        True or False
-    """
-
-    pattern: Pattern = compile(r'^\d+$')
-    check: Match = match(pattern, v)
-
-    if check:
-        return True
-
-    return False
+    return count(value)
 
 
 def count(v: str) -> int:
-    """ 
+    """
     Count function counts the holes in string.
 
     Parameters
